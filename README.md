@@ -41,7 +41,7 @@ This is a static website, so an uploaded image in a browser preview cannot autom
 
 The manager validates image type, decodability, and 12 MB per-file size. Projects without a saved thumbnail continue to use the existing preview placeholder, which is not an actual project screenshot.
 
-The current project thumbnails are included in each project's top-level folder. Verdant, SaaS Dashboard Website, and MICH Fashion Store have case-study summaries based on their supplied project briefs and visuals. Their supplied live website URLs are configured in `src/data.js`; external availability can change independently of the portfolio. Separate application source code was not included, so project-specific technology stacks and working commerce/dashboard functionality are not claimed.
+The portfolio cards and project galleries use high-quality WebP images included in each project's top-level folder; the original PNG files are retained. Gallery images load as visitors open a project and scroll through its gallery. Verdant, SaaS Dashboard Website, and MICH Fashion Store have case-study summaries based on their supplied project briefs and visuals. Their supplied live website URLs are configured in `src/data.js`; external availability can change independently of the portfolio. Separate application source code was not included, so project-specific technology stacks and working commerce/dashboard functionality are not claimed.
 
 ## Visual system
 
