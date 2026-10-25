@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c1424" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Project image manager — Ajiboye Michael</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./manage.css" />
+    <script type="module" src="./src/manage.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#manager">Skip to image manager</a>
+    <main id="manager" class="manager-shell">
+      <header class="manager-header">
+        <div>
+          <p class="eyebrow">Portfolio content tools</p>
+          <h1>Project image manager<span>.</span></h1>
+          <p class="manager-lede">Choose, preview, and organize real project imagery before saving it into your portfolio files.</p>
+        </div>
+        <a class="glass-link manager-back" href="./">← Back to portfolio</a>
+      </header>
+
+      <section class="manager-workspace" aria-label="Manage project images">
+        <aside class="project-picker glass-panel">
+          <p class="eyebrow">Projects</p>
+          <div id="project-list" class="project-list"></div>
+        </aside>
+        <section id="editor" class="image-editor glass-panel" aria-live="polite"></section>
+      </section>
+      <p id="manager-status" class="manager-status" role="status" aria-live="polite"></p>
+      <footer class="manager-footer">
+        <p>Images stay on your device. Save writes them into the selected portfolio folder; publish your updated site to make them public.</p>
+      </footer>
+    </main>
+  </body>
+</html>
