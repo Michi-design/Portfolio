@@ -114,7 +114,7 @@ function render() {
     </section>
     <div class="editor-actions">
       <button class="save-button" type="button" data-action="save" ${saving ? "disabled" : ""}>${saving ? "Saving images…" : "Save changes to portfolio folder"}</button>
-      <p class="save-help">Save copies images into <code>assets/projects/${escapeHtml(project.id)}/</code> and writes the portfolio image manifest. Deploy the updated site to publish them.</p>
+      <p class="save-help">Save copies images into the top-level <code>${escapeHtml(project.id)}/</code> folder and writes the portfolio image manifest. Deploy the updated site to publish them.</p>
     </div>`;
 }
 
@@ -226,9 +226,7 @@ async function saveImages() {
     await root.getFileHandle("index.html");
     const source = await root.getDirectoryHandle("src");
     const imagesDir = await source.getDirectoryHandle("data", { create: true });
-    const assetsDir = await root.getDirectoryHandle("assets", { create: true });
-    const projectsDir = await assetsDir.getDirectoryHandle("projects", { create: true });
-    const projectDir = await projectsDir.getDirectoryHandle(selectedId, { create: true });
+    const projectDir = await root.getDirectoryHandle(selectedId, { create: true });
     const manifest = structuredClone(projectImages);
     const galleryRecords = [];
 
@@ -236,7 +234,7 @@ async function saveImages() {
       const asset = gallery[index];
       const extension = extensionFor(asset);
       const filename = `gallery-${String(index + 1).padStart(2, "0")}.${extension}`;
-      const src = `./assets/projects/${selectedId}/${filename}`;
+      const src = `./${selectedId}/${filename}`;
       await writeFile(projectDir, filename, await assetBytes(asset));
       galleryRecords.push(toAssetRecord(asset, src));
     }
@@ -245,7 +243,7 @@ async function saveImages() {
     if (thumbnail) {
       const extension = extensionFor(thumbnail);
       const filename = `thumbnail.${extension}`;
-      const src = `./assets/projects/${selectedId}/${filename}`;
+      const src = `./${selectedId}/${filename}`;
       await writeFile(projectDir, filename, await assetBytes(thumbnail));
       thumbnailRecord = toAssetRecord(thumbnail, src);
     }
@@ -259,7 +257,7 @@ async function saveImages() {
     await writeFile(imagesDir, "project-images.js", new TextEncoder().encode(moduleSource));
 
     dirty = false;
-    setStatus(`Saved ${projects.find((project) => project.id === selectedId).name} images to assets/projects/${selectedId}/ and updated src/data/project-images.js. Refresh the portfolio to verify; publish these changed files to update the live site.`, "success");
+    setStatus(`Saved ${projects.find((project) => project.id === selectedId).name} images to the ${selectedId}/ folder and updated src/data/project-images.js. Refresh the portfolio to verify; publish these changed files to update the live site.`, "success");
   } catch (error) {
     if (error.name === "AbortError") {
       setStatus("Save cancelled. No changes were written.", "");
